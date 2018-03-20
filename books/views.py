@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.views import View
 from django.views.generic import ListView, DetailView
 from books.models import *
-
+from .forms import RegisterForm
 
 class Index(View):
     def get(self, request, *args, **kwargs):
@@ -31,3 +31,17 @@ class BookDetail(DetailView):
         contexts= super().get_context_data(**kwargs)
         return contexts
     #TODO:detail需要完善
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = RegisterForm()
+
+    return render(request, 'books/register.html', {'form':form})
+

@@ -8,10 +8,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', Index.as_view()),
-    path('index/', Index.as_view(), name='index-view'),
-    path('books/', include('books.urls'), name='goods-view'),
-
+    url(r'^$', Index.as_view()),
+    url('^index/', Index.as_view(), name='index-view'),
+    url('^books/', include('books.urls')),
+    url('^user/', include('books.urls')),
+    url(r'^user/', include('django.contrib.auth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
