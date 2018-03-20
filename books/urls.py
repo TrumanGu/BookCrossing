@@ -13,10 +13,11 @@ from django.conf.urls.static import static
 app_name = 'books'
 
 urlpatterns = [
-    url(r'^$', BookList.as_view(), name='book-view'),
-    url(r'^list-(?P<type_id>\d+)', BookList.as_view(), name='list-view'),
-    url(r'^detail-(?P<pk>\d+)', BookDetail.as_view(), name='detail-view'),
+    url(r'^$', BookList, name='book-view'),
+    url(r'^list-(?P<type_id>\d+)', BookList, name='list-view'),
+    url(r'^detail/(?P<nid>\d+)', BookDetail, name='detail-view'),
     url(r'^register/', register, name='register'),
+    url(r'search/', search, name='search'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

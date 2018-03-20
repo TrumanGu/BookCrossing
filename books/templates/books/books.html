@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,48 +44,72 @@
     <h1 class="my-4">Page Heading
         <small>Secondary Text</small>
     </h1>
+
+{#搜索框#}
+
+    <form method="get" id="search" action="{% url 'books:search' %}">
+        {% csrf_token %}
+        <input type="search" name="q" placeholder="搜索" required />
+        <button type="button" id="result"><span class="btn btn-default">搜索</span></button>
+    </form>
+
+
+
+{# TODO：添加分类检索功能 #}
+
 {# 卡片式商品   #}
     <div class="row">
+    {% if err_message %}
+        <p>{{ err_message }}</p>
+    {% else %}
         {% for book in book_list %}
         <div class="col-lg-4 col-sm-6 push-item">
             <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>
+                <a href="detail/{{ book.id }}"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>
                     <h4 class="card-body">
-                        <a href="#">{{ book.good_name }}</a>
+                        <a href="detail/{{ book.id }}">{{ book.good_name }}</a>
                     </h4>
                     <p class="card-text">{{ book.good_context }}</p>
             </div>
         </div>
+        {% empty %}
+            <div>暂时还没有您需要的书</div>
         {% endfor %}
+    {% endif %}
     </div>
 
 {# 页码 #}
     <ul class="pagination justify-content-center">
+        {% if book_list.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+            <a class="page-link" href="{% url 'books:book-view' %}?page={{ book_list.previous_page_number }}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
+                <span class="sr-only">上一页</span>
             </a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
+        {% endif %}
+
+        {% for num in paginator.page_range %}
+            {% if num == currentPage %}
+                <li class="page-item active"><a onclick="send()" href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
+            {% else %}
+                <li class="page-item"><a href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if book_list.has_next %}
+            <li class="page-item">
+            <a class="page-link"  href="{% url 'books:book-view' %}?page={{ book_list.next_page_number }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
+                <span class="sr-only">下一页</span>
             </a>
         </li>
+        {% endif %}
     </ul>
 
-</div>
 
+
+</div>
     {# footer #}
     <footer class="py-5 bg-dark">
         <div class="container">
@@ -96,5 +120,6 @@
 
 <script src="{% static 'books/js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'books/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'books/js/book.js' %}"></script>
 </body>
 </html>
