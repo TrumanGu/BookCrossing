@@ -12,6 +12,7 @@ class Index(View):
 class BookList(ListView):
     model = Goods
     template_name = 'books/books.html'
+    paginate_by = 9
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book_list'] = Goods.objects.all()
@@ -28,9 +29,9 @@ class BookDetail(DetailView):
     template_name = 'books/detail.html'
     context_object_name = 'book_detail'
     def get_context_data(self, **kwargs):
-        contexts= super().get_context_data(**kwargs)
+        contexts = super().get_context_data(**kwargs)
         return contexts
-    #TODO:detail需要完善
+    #TODO:detail在首页的a标签链接需要拿到 数据库增删改查 拿id或者。。。。
 
 
 
