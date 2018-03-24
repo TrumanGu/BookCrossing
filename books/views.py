@@ -3,11 +3,12 @@ from django.views import View
 from books.models import *
 from .forms import RegisterForm
 from django.db.models import Q
+from django import forms
 
 
 class Index(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'index.html')
+        return render(request, 'books/index.html')
 
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -28,14 +29,10 @@ def BookList(request):
 
 
 
-
-
-
-
 def BookDetail(request,nid):
     try:
         book_obj = Goods.objects.get(pk=nid)
-        return render(request, 'books/detail.html',{'book_obj':book_obj})
+        return render(request, 'books/detail.html', {'book_obj':book_obj})
     except Exception:
         raise Http404
 
@@ -58,7 +55,11 @@ def search(request):
     q = request.GET.get('q')
     err_message = ''
     if not q:
-        err_message =  '请输入关键词'
+        err_message = '请输入关键词'
         return render(request, 'books/books.html', locals())
     book_list = Goods.objects.filter(Q(good_name__icontains=q)| Q(good_category__caption__icontains=q)|Q(good_context__icontains=q))
     return render(request, 'books/books.html',locals())
+
+
+def user_info(request):
+    return render(request, 'books/user_info.html', locals())

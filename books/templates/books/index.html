@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>首页</title>
+    <link rel="stylesheet" href="{% static '/books/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/books/css/index.css' %}">
+    <link rel="stylesheet" href="{% static '/books/css_lib/button.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'books:book-view' %}">BookCrossing</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+           <li class="nav-item">
+        <a class="nav-link" href="#">个人中心</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{% url 'password_reset' %}?next={{ request.path }}">更改密码</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">注销</a>
+      </li>
+          {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">登录 </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'books:register' %}">注册</a>
+      </li>
+{% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="输入书名/内容" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+  </div>
+</nav>
+
+<header>
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>Make the Knowledge at Your Fingertips</h1>
+            <hr>
+            <p>加入南京工业大学读书漂流</p>
+            <a href="{% url 'books:book-view' %}" class="button button-glow button-pill button-highlight  button-jumbo">Get Start</a>
+        </div>
+    </div>
+</header>
+
+
+    <script src="{% static 'books/tether/tether.js' %}"></script>
+    <script src="{% static 'books/jquery/jquery.js' %}"></script>
+    <script src="{% static 'books/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'books/js/index.js' %}"></script>
+</body>
+</html>
