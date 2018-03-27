@@ -9,7 +9,7 @@
     <title>图书漂流</title>
 
     <link rel="stylesheet" href="{% static '/books/bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static '/books/css/book.css' %}">
+    <link rel="stylesheet" href="{% static '/books/css/books.css' %}">
 </head>
 <body>
 {#  导航栏  #}
@@ -23,7 +23,7 @@
     <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
            <li class="nav-item">
-        <a class="nav-link" href="#">个人中心</a>
+        <a class="nav-link" href="{% url 'books:user-view' %}">个人中心</a>
       </li>
           <li class="nav-item">
         <a class="nav-link" href="{% url 'password_reset' %}?next={{ request.path }}">更改密码</a>
@@ -49,33 +49,56 @@
 </nav>
 {#body部分 TODO：1.瀑布流  2.分类筛选 3.Ajax 4.判断是否登录 5.上传页面#}
 <div class="container">
-    <h1 class="my-4">南京工业大学读书漂流
-        <small>欢迎您的参与</small>
-    </h1>
-
 {# TODO：添加分类检索功能 #}
-
-{# 卡片式商品   #}
-    <div class="row">
+<div class="nameTag">
+    <h4 class="name-tag">南京工业大学读书漂流</h4>
+</div>
+  <div class="row">
     {% if err_message %}
         <p>{{ err_message }}</p>
     {% else %}
         {% for book in book_list %}
-        <div class="col-lg-4 col-sm-6 push-item">
-            <div class="card h-100">
-                <a href="detail/{{ book.id }}"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>
-                    <h4 class="card-body">
+        <div class="col-lg-3 col-sm-6 push-item">
+            <div class="card h-50">
+                <a class="img-style" href="detail/{{ book.id }}"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>
+                <div class="book_info">
+                    <h4 class="card-body book-name">
                         <a href="detail/{{ book.id }}">{{ book.good_name }}</a>
                     </h4>
-                    <p class="card-text">{{ book.good_context }}</p>
+                </div>
             </div>
         </div>
         {% empty %}
             <div>暂时还没有您需要的书</div>
         {% endfor %}
     {% endif %}
-    </div>
+</div>
+  </div>
+<div class="rsidebar span_1_of_left"></div>
 
+
+{##}
+{# 卡片式商品   #}
+{#    <div class="row">#}
+{#    {% if err_message %}#}
+{#        <p>{{ err_message }}</p>#}
+{#    {% else %}#}
+{#        {% for book in book_list %}#}
+{#        <div class="col-lg-3 col-sm-6 push-item">#}
+{#            <div class="card h-50">#}
+{#                <a href="detail/{{ book.id }}"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>#}
+{#                    <h4 class="card-body">#}
+{#                        <a href="detail/{{ book.id }}">{{ book.good_name }}</a>#}
+{#                    </h4>#}
+{#                    <p class="card-text">{{ book.good_context }}</p>#}
+{#            </div>#}
+{#        </div>#}
+{#        {% empty %}#}
+{#            <div>暂时还没有您需要的书</div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+{#    </div>#}
+{##}
 {# 页码 #}
     <ul class="pagination justify-content-center">
         {% if book_list.has_previous %}
@@ -108,7 +131,6 @@
 
 
 </div>
-    {# footer #}
     <footer class="py-5 bg-dark">
         <div class="container">
             <p class="m-0 text-center text-white">sdfsdfsdfsd</p>

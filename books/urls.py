@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^list-(?P<type_id>\d+)', BookList, name='list-view'),
     url(r'^detail/(?P<nid>\d+)', BookDetail, name='detail-view'),
     url(r'^register/', register, name='register'),
-    url(r'search/', search, name='search'),
+    url(r'^search/', search, name='search'),
     url(r'^user_info/', user_info, name='user-view'),
 ]
 

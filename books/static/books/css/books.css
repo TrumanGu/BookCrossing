@@ -1,0 +1,24 @@
+.book_info{
+    background-color: #eaeaea;
+    padding: 1.25rem;
+    margin-bottom: 5rem;
+
+}
+
+.book-name{
+    text-align: center;
+}
+
+.img-style{
+    border-radius:  10rem;
+}
+
+body{
+    background-color: floralwhite;
+}
+
+.name-tag{
+    font-family: 'Arimo', sans-serif;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

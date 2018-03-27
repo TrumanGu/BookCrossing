@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect,Http404
+from django.shortcuts import render,redirect,Http404,HttpResponseRedirect,HttpResponse
 from django.views import View
 from books.models import *
-from .forms import RegisterForm
+from .forms import *
 from django.db.models import Q
-from django import forms
+
 
 
 class Index(View):
@@ -62,4 +62,16 @@ def search(request):
 
 
 def user_info(request):
-    return render(request, 'books/user_info.html', locals())
+    if request.method == "POST":
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            result = form.save(commit=False)
+            result.good_owener = request.user
+            result.save()
+            return redirect('/')
+        else:
+            print(form.errors)
+            return HttpResponse('not pass')
+    elif request.method == 'GET':
+        form = BookForm()
+        return render(request, 'books/user_info.html',{'form':form})
