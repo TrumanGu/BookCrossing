@@ -48,7 +48,7 @@
   </div>
 </nav>
 {#body部分 TODO：1.瀑布流  2.分类筛选 3.Ajax 4.判断是否登录 5.上传页面#}
-<div class="container">
+<div class="container not-move">
 {# TODO：添加分类检索功能 #}
 <div class="nameTag">
     <h4 class="name-tag">南京工业大学读书漂流</h4>
@@ -76,29 +76,6 @@
   </div>
 <div class="rsidebar span_1_of_left"></div>
 
-
-{##}
-{# 卡片式商品   #}
-{#    <div class="row">#}
-{#    {% if err_message %}#}
-{#        <p>{{ err_message }}</p>#}
-{#    {% else %}#}
-{#        {% for book in book_list %}#}
-{#        <div class="col-lg-3 col-sm-6 push-item">#}
-{#            <div class="card h-50">#}
-{#                <a href="detail/{{ book.id }}"><img class="card-img-top" src="{{ book.good_img.url }}" /></a>#}
-{#                    <h4 class="card-body">#}
-{#                        <a href="detail/{{ book.id }}">{{ book.good_name }}</a>#}
-{#                    </h4>#}
-{#                    <p class="card-text">{{ book.good_context }}</p>#}
-{#            </div>#}
-{#        </div>#}
-{#        {% empty %}#}
-{#            <div>暂时还没有您需要的书</div>#}
-{#        {% endfor %}#}
-{#    {% endif %}#}
-{#    </div>#}
-{##}
 {# 页码 #}
     <ul class="pagination justify-content-center">
         {% if book_list.has_previous %}
@@ -112,9 +89,9 @@
 
         {% for num in paginator.page_range %}
             {% if num == currentPage %}
-                <li class="page-item active"><a onclick="send()" href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
+                <li class="page-item active"><a class="page-link" onclick="send()" href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
             {% else %}
-                <li class="page-item"><a href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
+                <li class="page-item"><a class="page-link" href="{% url 'books:book-view' %}?page={{ num }}">{{ num }}</a></li>
             {% endif %}
         {% endfor %}
 
@@ -128,13 +105,12 @@
         {% endif %}
     </ul>
 
-
-
-</div>
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">sdfsdfsdfsd</p>
-        </div>
+    <footer class="py-5 bg-dark link text-center">
+            <div>邮箱：1227085585@qq.com</div>
+            <div><a class="link" href="https://github.com/TrumanGu">GitHub</a></div>
+            <div>联系我们</div>
+        <p> </p>
+        <div class="text-center"><p class="link">Copyright &copy; 2018 - All Rights Reserved -</p></div>
     </footer>
 
 

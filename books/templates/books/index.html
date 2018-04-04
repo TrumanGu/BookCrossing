@@ -25,7 +25,7 @@
     <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
            <li class="nav-item">
-        <a class="nav-link" href="#">个人中心</a>
+        <a class="nav-link" href="{% url 'books:user-view' %}">个人中心</a>
       </li>
           <li class="nav-item">
         <a class="nav-link" href="{% url 'password_reset' %}?next={{ request.path }}">更改密码</a>

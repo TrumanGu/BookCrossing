@@ -1,5 +1,5 @@
 .book_info{
-    background-color: #eaeaea;
+    background-color: rgba(155,155,155,0.28);
     padding: 1.25rem;
     margin-bottom: 5rem;
 
@@ -13,12 +13,29 @@
     border-radius:  10rem;
 }
 
+.html{
+    position: relative;
+    min-height: 100%;
+}
 body{
     background-color: floralwhite;
+
+}
+.footer{
+    position: relative;
+    bottom: 0;
 }
 
 .name-tag{
     font-family: 'Arimo', sans-serif;
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.link{
+    color:white;
+}
+
+.container{
+    align-content: center;
 }

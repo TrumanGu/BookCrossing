@@ -14,11 +14,11 @@ app_name = 'books'
 
 urlpatterns = [
     url(r'^$', BookList, name='book-view'),
-    url(r'^list-(?P<type_id>\d+)', BookList, name='list-view'),
-    url(r'^detail/(?P<nid>\d+)', BookDetail, name='detail-view'),
-    url(r'^register/', register, name='register'),
-    url(r'^search/', search, name='search'),
-    url(r'^user_info/', user_info, name='user-view'),
+    url(r'^list-(?P<type_id>\d+)$', BookList, name='list-view'),
+    url(r'detail/(?P<nid>\d+)/$', BookDetail, name='detail-view'),
+    url(r'^register/$', register, name='register'),
+    url(r'search/$', search, name='search'),
+    url(r'^user_info/$', user_info, name='user-view'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
