@@ -1,25 +1,9 @@
-.book_info{
-    background-color: rgba(155,155,155,0.28);
-    padding: 1.25rem;
-    margin-bottom: 5rem;
-
-}
-
-.book-name{
-    text-align: center;
-}
-
-.img-style{
-    border-radius:  10rem;
-}
-
 .html{
     position: relative;
     min-height: 100%;
 }
 body{
     background-color: floralwhite;
-
 }
 .footer{
     position: relative;
@@ -38,4 +22,23 @@ body{
 
 .container{
     align-content: center;
+}
+
+.book-name {
+    color:#825d5b;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.my-box:hover {
+    transition: all .2s;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transform: translate3d(0,-2px,0);
+}
+
+.card-text {
+    height: 150px;
+    overflow: hidden;
+    text-overflow: clip;
 }

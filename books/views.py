@@ -15,7 +15,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def BookList(request):
     book_list = Goods.objects.all()
     book_type_list = Category.objects.all()
-    paginator = Paginator(book_list, 9)
+    paginator = Paginator(book_list, 12)
     page = request.GET.get('page', 1)
     currentPage = int(page)
     try:
@@ -30,11 +30,8 @@ def BookList(request):
 
 
 def BookDetail(request,nid):
-    try:
-        book_obj = Goods.objects.get(pk=nid)
-        return render(request, 'books/detail.html', {'book_obj':book_obj})
-    except Exception:
-        raise Http404
+    book_obj = Goods.objects.get(pk=nid)
+    return render(request, 'books/detail.html', {'book_obj':book_obj})
 
 
 

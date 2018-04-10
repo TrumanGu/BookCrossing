@@ -1,0 +1,44 @@
+header{
+    position: absolute;
+    z-index: -1;
+    top: 56px;
+    width: 100%;;
+    min-height: auto;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../images/IMG_3216.JPG");
+    color: white;
+}
+header .header-content{
+    position: relative;
+    text-align: center;
+    padding: 250px 15px 250px;
+    width: 100%;
+}
+    header .header-content .header-content-inner h1 {
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 30px; }
+    header .header-content .header-content-inner hr {
+      margin: 30px auto; }
+    header .header-content .header-content-inner p {
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+      margin-bottom: 50px;
+    }
+
+
+
+.btn-xxx {
+    padding: 10px 30px;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    border-radius: 300px;
+}
+
+.title {
+    font-weight: 500 !important;
+
+}

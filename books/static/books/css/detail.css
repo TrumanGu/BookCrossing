@@ -1,0 +1,247 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.my-main {
+    background-color: #f0f0f0;
+    height: 900px;
+}
+
+.my-sidebar {
+    background-color:#f0f0f0 ;
+    height: 900px;
+}
+
+@media (max-width: 768px) {
+    .my-sidebar{
+        display: none;
+    }
+    .my-main{
+        margin: auto;
+    }
+}
+
+.book-name {
+    height: 40px;
+}
+.book-name h1 {
+    margin:25px auto;
+    text-align: center;
+    color: #707070;
+    font-family: "Open Sans","Arial",sans-serif;
+}
+
+.link{
+    color:white;
+}
+
+.book-info {
+    height: 830px;
+    margin: 0 30px;
+
+}
+
+.book-img-warpper {
+    height: 450px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.book-content {
+    height: 360px;
+    background-color: white;
+    padding: 20px;
+    overflow: hidden;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1)
+}
+
+.owner-info {
+    width: 250px;
+    height: 280px;
+    border: 1px solid #b5b5b5;
+    padding: 10px;
+    float: left;
+    margin-right: 20px;
+}
+
+.user-word {
+    margin-top:20px ;
+}
+.book-img {
+    height: 400px;
+    margin-top: 30px;
+}
+
+.pre-img {
+    height: 280px;
+    width: 180px;
+}
+
+.current-img {
+    margin: 0 auto;
+    display: inline-block;
+}
+.current {
+    text-align: center;
+}
+
+.next-img {
+    height: 280px;
+    width: 180px;
+}
+
+.pre-btn {
+    transition:opacity 0.2s linear,background-color 0.2s linear;
+    background-color:#06a7ea;
+    background-image:url("../images/arrow-left-white.png");
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:8px 11px;
+    cursor:pointer;
+    height:40px;
+    width:40px;
+    margin-top: 130px;
+
+}
+
+.next-btn {
+    transition:opacity 0.2s linear,background-color 0.2s linear;
+    background-color:#06a7ea;
+    background-image:url("../images/arrow-right-white.png");
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-size:8px 11px;
+    cursor:pointer;
+    height:40px;
+    width:40px;
+        margin-top: 130px;
+
+}
+
+
+@media (max-width:992px ) {
+    .next-btn{
+        display: none;
+    }
+    .pre-btn{
+        display: none;
+    }
+    .pre-img{
+        display: none;
+    }
+    .next-img{
+        display: none;
+    }
+    .current-img {
+        position: relative;
+    }
+}
+
+
+
+.s-owner{
+    height: 250px;
+}
+.s-owner h3 {
+    margin-top: 15px;
+    text-align: center;
+    line-height: 48px;
+    color: #707070;
+    font-family: "Open Sans","Arial",sans-serif;
+}
+.s-owner-info{
+    margin-top: 15px;
+    height: 150px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1)
+
+}
+
+.s-owner-info img {
+    height: 90px;
+    width: 90px;
+    float: left;
+}
+.s-owner-info div {
+    height: 90px;
+    float: left;
+    margin-left: 20px;
+    color: #707070;
+    font-family: "Open Sans","Arial",sans-serif;
+
+}
+
+.s-contact{
+    background-color: white;
+    height: 445px;
+    padding: 20px;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.latest-book{
+    background-color: lightgoldenrodyellow;
+}
+
+.s-contact h3{
+    margin: 7px 19px;
+    color: #707070;
+    font-family: "Open Sans","Arial",sans-serif;
+}
+.contact-inner {
+    height: 300px;
+    padding-left: 20px;
+
+}
+.control-group {
+    height: 70px;
+    margin: 0 auto 15px;
+}
+.controls input {
+    height: 30px;
+    width: 100%;
+    margin: 0 auto;
+}
+.message-warpper{
+    background-color: white;
+    height: 130px;
+
+}
+ .controls .control-message {
+    height: 100px;
+    width: 100%;
+    margin: 0 auto;
+ }
+ .form-actions {
+     margin: 12px 0;
+ }
+ textarea {
+     resize: none;
+ }
+
+ .col-lg-1, .col-lg-3, .col-lg-4 {
+     text-align: center;
+ }
+
+
+ @media (max-width: 1193px) {
+    .s-owner{
+        height:374px ;
+    }
+     .s-owner-info {
+         height: 293px;
+         text-align: center;
+     }
+     .s-owner-info img {
+         height: 140px;
+         width: auto;
+         float: none;
+     }
+     .s-owner-info div {
+         float: none;
+         margin: 0;
+         margin-top: 10px;
+     }
+}

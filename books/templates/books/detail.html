@@ -8,6 +8,7 @@
     <title>Detail</title>
     <link rel="stylesheet" href="{% static '/books/bootstrap/dist/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static '/books/css/detail.css' %}">
+    <link rel="stylesheet" href="{% static '/books/css_lib/button.css' %}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,7 +21,7 @@
     <ul class="navbar-nav ml-auto">
         {% if user.is_authenticated %}
            <li class="nav-item">
-        <a class="nav-link" href="{% url 'books:user-view' %}">个人中心</a>
+        <a class="nav-link" href="{% url 'books:book-view' %}">随便逛逛</a>
       </li>
           <li class="nav-item">
         <a class="nav-link" href="{% url 'password_reset' %}?next={{ request.path }}">更改密码</a>
@@ -45,25 +46,80 @@
   </div>
 </nav>
 
-    <div class="container-fluid content">
+{#    main#}
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-9 good9">
-                <div style="background-color: #1e7e34"></div>
-            </div>
-            <div class="col-lg-3 good3">
-                <div class="widget owner-info">
-                    <div class="title"><h2>看看他的其他图书/联系他</h2></div>
-                    <div class="">
-                        <form action="#">
-                            <label>给他留言<textarea id="inputMessage"></textarea></label>
-                            <input type="submit" class="btn btn-primary" value="发送" />
-                        </form>
+            <div class="col-md-9 col-sm-12 my-main">
+                <div class="book-name"><h1>{{ book_obj.good_name }}</h1></div>
+                <div class="book-info">
+                    <div class="book-img row">
+                        <div class="col-lg-1"><button class="pre-btn btn btn-primary"></button></div>
+                        <div class="col-lg-3"><img class="pre-img" src="{{ book_obj.good_img.url}}" alt="" /></div>
+                        <div class="col-lg-4 current"><img class="current-img" src="{{ book_obj.good_img.url }}" alt="img" /></div>
+                        <div class="col-lg-3"><img class="next-img" src="{{ book_obj.good_img.url }}" alt="" /></div>
+                        <div class="col-lg-1"><button class="next-btn btn btn-primary"></button></div>
+                    </div>
+                    <div class="book-content">
+                        <div class="owner-info">
+                            <p>拥有者：{{ book_obj.good_owener }}</p>
+                            <p>{{ book_obj.good_owener.user_info }}</p>
+                            <p>漂流成功次数：{{ book_obj.good_owener.user_stars }}</p>
+                            <p>学号：{{ book_obj.good_owener.user_number }}</p>
+                        </div>
+                        <p class="user-word">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ book_obj.good_context }}</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 my-sidebar">
+                <div class="s-owner">
+                    <h3>漂流者信息</h3>
+                    <div class="s-owner-info">
+                        <img src="{% static '/books/images/emma-small.png' %}" alt="头像">
+                       <div>
+                        <h4>{{ book_obj.good_owener }}</h4>
+                        <p>{{ book_obj.good_owener.user_info }}</p>
+                        <p>漂流次数：{{ book_obj.good_owener.user_stars }}</p>
+                       </div>
+                    </div>
+                </div>
+                <div class="s-contact">
+                    <h3>联系他</h3>
+                    <div class="contact-inner">
+                        <form action="#">
+                            <div class="control-group">
+                                <label for="inputName" class="control-label">姓名</label>
+                                <div class="controls">
+                                    <input type="text" required>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="inputName" class="control-label">你的联系方式</label>
+                               <div class="controls"><input type="text" required></div>
+                            </div>
+                            <div class="message-warpper">
+                                 <label for="inputName" class="control-label">留言</label>
+                                <div class="controls"><textarea class="control-message" type="text" required></textarea></div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="latest-book"></div>
+            </div>
         </div>
     </div>
-
+{#    main end#}
+{#footer start#}
+        <footer class="py-5 bg-dark link text-center">
+            <div>邮箱：1227085585@qq.com</div>
+            <div><a class="link" href="https://github.com/TrumanGu">GitHub</a></div>
+            <div>联系我们</div>
+        <p> </p>
+        <div class="text-center"><p class="link">Copyright &copy; 2018 - All Rights Reserved -</p></div>
+    </footer>
+{#footer end#}
      <script src="{% static 'books/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'books/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 </body>

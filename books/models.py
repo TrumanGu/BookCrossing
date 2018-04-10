@@ -4,14 +4,14 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     user_number = models.CharField(max_length=50,verbose_name='用户名')
-    user_info = models.CharField(max_length=100, null=True, blank=True,verbose_name='联系方式')
-    user_stars = models.FloatField(null=True,default=5,verbose_name='用户等级(默认为5)')
+    user_info = models.CharField(max_length=100,verbose_name='联系方式(QQ或微信)')
+    user_stars = models.FloatField(null=True,default=0,verbose_name='漂流成功次数')
     class Meta(AbstractUser.Meta):
         pass
 
 
 class Category(models.Model):
-    caption = models.CharField(max_length=30,verbose_name='分类')
+    caption = models.CharField(max_length=30, verbose_name='分类')
     def __str__(self):
         return self.caption
 

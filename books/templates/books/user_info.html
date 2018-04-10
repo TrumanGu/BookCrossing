@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <style>
+        .errorlist {
+            color: red;
+        }
+    </style>
+     <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
+     <link rel="stylesheet" href="{% static '/books/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static '/books/css/user_info.css' %}">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'books:book-view' %}">BookCrossing</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+           <li class="nav-item">
+        <a class="nav-link" href="{% url 'books:user-view' %}">个人中心</a>
+      </li>
+          <li class="nav-item">
+        <a class="nav-link" href="{% url 'password_reset' %}?next={{ request.path }}">更改密码</a>
+      </li>
+            <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}?next={{ request.path }}">注销</a>
+      </li>
+          {% else %}
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">登录 </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'books:register' %}">注册</a>
+      </li>
+{% endif %}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="输入书名/内容" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+    </form>
+  </div>
+</nav>
+<div  class="flex-center not-move">
+    <div class="container">
+        <div class="flex-center">
+            <div class="unit-1-2 unit-1-on-mobile">
+                 {% if user.is_authenticated %}
+                <h3>上传您的书</h3>
+                <form class="form" action="{% url 'books:user-view' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+                            <p class="help text-small text-muted">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    {% endfor %}
+{#                    {{ form.good_owener}}#}
+{#                    {{ form.as_p }}#}
+
+                    <button type="submit" class="btn btn-primary btn-block">提交</button>
+                </form>
+            {% else %}
+                 <script>window.history.back(-1)</script>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{% static 'books/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'books/tether/tether.js' %}"></script>
+<script src="{% static 'books/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'books/js/user_info.js' %}"></script>
+</body>
+</html>
